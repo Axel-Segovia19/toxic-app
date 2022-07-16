@@ -1,38 +1,51 @@
 <template>
-<div class="flex flex-col items-center bg-black">
-    <form-tag
-
-    >
-      <post-form>
-        v-model="toxic.toxicTitle" type="text" required="true" label="Title"
-        :value="toxic.toxicTitle" name="title"
-      </post-form>
-      <post-form>
-        v-model="toxic.deletetimer" type="number" required="true" label="Timer"
-        :value="toxic.deletetimer" name="timer"
-      </post-form>
-      <post-form>
-        v-model="toxic.toxicDescription" type="text" required="true"
-        label="Description" :value="toxic.toxicDescription" name="description"
-      </post-form>
-    </form-tag>
+  <div>
+    <div class="flex justify-center mt-2">
+      <form-tag class="w-full  border flex items-center flex-col bg-gray">
+        <post-form
+          v-model="toxic.toxicTitle" type="text" required="true"
+          :value="toxic.toxicTitle" name="title" placeholder="Text here">
+        </post-form>
+        <post-form
+          v-model="toxic.deletetimer" type="number" required="true"
+           :value="toxic.deletetimer" name="timer" placeholder="timer">
+        </post-form>
+        <post-form
+          v-model="toxic.toxicDescription" type="text" required="true"
+           :value="toxic.toxicDescription" name="description">
+        </post-form>
+        <button class="flex bg-black w-16" @click="savePostForm">Submit</button>
+      </form-tag>
+      <div class="flex " v-for="(post) in posts" :key="post.id">   
+         {{post}}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import FormTag from "./FormTag.vue";
 import PostForm from "./PostForm.vue";
+
 export default {
   components: { PostForm, FormTag },
 
   data() {
     return {
+      id: 0,
+      posts: [],
       toxic: {
         toxicTitle: "",
         deletetimer: 0,
         toxicDescription: "",
       },
     };
+  },
+  methods:{
+    savePostForm(){
+      this.posts.push({id: this.id++, Object: this.toxic})
+      console.log(this.posts)
+    }
   },
 };
 </script>
