@@ -2,7 +2,6 @@
     <form 
         @submit.prevent="submit"
         :ref="name"
-        :event="event"
         autocomplete="off" 
         :method="method" 
         :action="action" 

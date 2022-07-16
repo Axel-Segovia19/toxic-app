@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <div class="flex justify-center mt-2">
       <form-tag class="w-full  border flex items-center flex-col bg-gray">
         <post-form
@@ -16,10 +16,16 @@
         </post-form>
         <button class="flex bg-black w-16" @click="savePostForm">Submit</button>
       </form-tag>
-      <div class="flex " v-for="(post) in posts" :key="post.id">   
-         {{post}}
-      </div>
     </div>
+      <div class="flex flex-col ">   
+         <div class="flex text-white flex-col"  v-for="post in posts" :key="post.id">
+              <h1>Name</h1>
+              <h6>Time Posted: </h6>   
+              <h1>{{post.Object.toxicTitle}}</h1>     
+              <h1>{{post.Object.deletetimer}}</h1>     
+              <h1>{{post.Object.toxicDescription}}</h1>     
+         </div>
+      </div>
   </div>
 </template>
 
